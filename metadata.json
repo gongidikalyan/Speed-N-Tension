@@ -1,0 +1,7 @@
+{
+  "name": "Speed N Tension",
+  "description": "Speed N Tension is a fast-paced mobile reaction game built around speed, focus and tension. Think Fast. Tap Faster.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

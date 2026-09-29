@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+:root {
+  --font-display: 'Chakra Petch', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  color-scheme: light;
+  --bg-primary: #fcfcfd;
+  --bg-secondary: #f4f4f7;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8f9fa;
+  --border-primary: #e4e4e7;
+  --border-subtle: #eeeff2;
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+}
+
+/* Light Mode Defaults */
+html.light {
+  color-scheme: light;
+  --bg-primary: #fcfcfd;
+  --bg-secondary: #f4f4f7;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8f9fa;
+  --border-primary: #e4e4e7;
+  --border-subtle: #eeeff2;
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+}
+
+/* Dark Mode Defaults */
+html.dark {
+  color-scheme: dark;
+  --bg-primary: #070709;
+  --bg-secondary: #0c0c10;
+  --bg-card: #111115;
+  --bg-card-subtle: #0d0d12;
+  --border-primary: #27272a;
+  --border-subtle: #18181b;
+  --text-primary: #f4f4f6;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle cinematic noise overlay */
+.bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html.light .bg-noise {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* High tension arcade grid */
+.bg-arcade-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+html.light .bg-arcade-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* Speed streaks */
+@keyframes speedLines {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(200%); opacity: 0; }
+}
+
+.animate-speed-line {
+  animation: speedLines 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Tension pulse */
+@keyframes pulseTension {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.04); }
+}
+
+.animate-tension-pulse {
+  animation: pulseTension 1.8s ease-in-out infinite;
+}
+
+/* Screen shake for intense moments */
+@keyframes screenJitter {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1.5px); }
+  50% { transform: translate(1.5px, -1px); }
+  75% { transform: translate(-1px, -1.5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.shake-active {
+  animation: screenJitter 0.2s ease-in-out infinite;
+}
+
+/* Sleek custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #09090b;
+}
+html.light ::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626 !important;
+}
+
+

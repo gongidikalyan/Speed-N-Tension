@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="light scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Speed N Tension — Think Fast. Tap Faster.</title>
+    <meta
+      name="description"
+      content="Speed N Tension is a fast-paced mobile reaction game built around speed, focus and tension."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230a0f1d'/%3E%3Ccircle cx='50' cy='32' r='20' fill='%23ef4444' opacity='0.25'/%3E%3Ccircle cx='50' cy='32' r='18' fill='none' stroke='%23ef4444' stroke-width='4'/%3E%3Cline x1='37' y1='19' x2='63' y2='45' stroke='%23ef4444' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='50' y='68' text-anchor='middle' fill='%23ffb703' font-family='sans-serif' font-weight='900' font-size='18'%3ESPEED%3C/text%3E%3Ctext x='50' y='86' text-anchor='middle' fill='%2338bdf8' font-family='sans-serif' font-weight='900' font-size='16'%3ETENSION%3C/text%3E%3C/svg%3E" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Speed N Tension — Think Fast. Tap Faster." />
+    <meta
+      property="og:description"
+      content="Speed N Tension is a fast-paced mobile reaction game built around speed, focus and tension."
+    />
+    <meta property="og:site_name" content="Speed N Tension" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Speed N Tension — Think Fast. Tap Faster." />
+    <meta
+      name="twitter:description"
+      content="Speed N Tension is a fast-paced mobile reaction game built around speed, focus and tension."
+    />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#fcfcfd" />
+
+    <!-- Immediate Theme Initialization Script (Light Mode by Default) -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem('snt-theme-mode');
+          if (mode === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('snt-theme-mode', 'light');
+            localStorage.setItem('snt-theme', 'light');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Speed N Tension",
+        "operatingSystem": "Android, iOS",
+        "applicationCategory": "GameApplication",
+        "genre": "Arcade Reaction",
+        "description": "Speed N Tension is a fast-paced mobile reaction game built around speed, focus and tension.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-[#fcfcfd] dark:bg-[#070709] text-neutral-900 dark:text-neutral-100 antialiased selection:bg-red-600 selection:text-white overflow-x-hidden min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
