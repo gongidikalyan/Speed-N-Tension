@@ -70,13 +70,25 @@ export default function App() {
   // Initialize and synchronize with browser URL and history
   useEffect(() => {
     const handleLocationChange = () => {
-      let path = window.location.pathname as RoutePath;
-      // Strip trailing slash if present (except for root '/')
-      if (path.length > 1 && path.endsWith('/')) {
-        path = path.slice(0, -1) as RoutePath;
+      // 1. Check URL hash first (e.g. #/privacy-policy)
+      const hash = window.location.hash.replace(/^#/, '') as RoutePath;
+      if (hash && VALID_ROUTES.includes(hash)) {
+        setCurrentPath(hash);
+        return;
       }
-      if (VALID_ROUTES.includes(path)) {
-        setCurrentPath(path);
+
+      // 2. Check pathname, matching either direct or subdirectory routes (e.g. /Speed-N-Tension/terms)
+      let pathname = window.location.pathname;
+      if (pathname.length > 1 && pathname.endsWith('/')) {
+        pathname = pathname.slice(0, -1);
+      }
+
+      const matchedRoute = VALID_ROUTES.find(
+        (route) => route !== '/' && (pathname.endsWith(route) || pathname === route)
+      );
+
+      if (matchedRoute) {
+        setCurrentPath(matchedRoute);
       } else {
         setCurrentPath('/');
       }
@@ -85,14 +97,27 @@ export default function App() {
     // Initial load
     handleLocationChange();
 
-    // Browser back/forward navigation listener
+    // Browser back/forward and hash changes
     window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const navigateTo = (path: RoutePath) => {
     if (path !== currentPath) {
-      window.history.pushState({}, '', path);
+      // On GitHub Pages or static host subfolders, use hash to prevent 404 on refresh
+      const isSubdirectory = window.location.pathname.replace(/\/$/, '').length > 0 &&
+        !VALID_ROUTES.includes(window.location.pathname as RoutePath);
+
+      if (isSubdirectory || window.location.hostname.endsWith('github.io')) {
+        window.location.hash = path === '/' ? '' : path;
+      } else {
+        window.history.pushState({}, '', path);
+      }
+
       setCurrentPath(path);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
